@@ -3,7 +3,7 @@ Contributors: scribu
 Donate link: http://scribu.net/download/
 Tags: gallery, images, optimisation
 Requires at least: 2.5
-Tested up to: 2.5.1
+Tested up to: 2.6
 Stable tag: trunk
 
 Improves the built-in gallery in WP 2.5
