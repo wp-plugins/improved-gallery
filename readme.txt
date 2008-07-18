@@ -6,11 +6,11 @@ Requires at least: 2.5
 Tested up to: 2.6
 Stable tag: trunk
 
-Improves the built-in gallery in WP 2.5
+Improves the built-in gallery in WP 2.5+
 
 == Description ==
 
-This plugin improves the gallery template in Wordpress 2.5, by making the following tweeks:
+This plugin improves the gallery template in Wordpress 2.5+, by making the following tweaks:
 
 1. Puts all the gallery css in a separte file, for easy customisation and **faster page load**.
 1. Adds an id attribute to the code, so that two or more galleries can have a *different* number of columns and still **display correctly** on the same page.
@@ -26,6 +26,6 @@ This plugin improves the gallery template in Wordpress 2.5, by making the follow
 If you want to make it even easier to edit your gallery style, you can do this:
 
 1. Copy the styles from 'gallery-style.css' into the main 'style.css' file in your theme (`wp-content/themes/your-theme`).
-1. Edit `improved-gallery.php` and delete or comment out this line:
+1. Edit `improved-gallery.php` and delete or comment out this line, like so:
 
-`add_action('wp_head', 'improved_gallery_stylesheet');`
+`//	add_action('wp_head', 'improved_gallery_stylesheet');`
