@@ -1,6 +1,6 @@
 === Improved Gallery ===
 Contributors: scribu
-Donate link: http://scribu.net/download/
+Donate link: http://scribu.net/projects/improved-gallery.html
 Tags: gallery, images, optimisation
 Requires at least: 2.5
 Tested up to: 2.6
