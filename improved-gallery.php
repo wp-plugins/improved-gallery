@@ -2,7 +2,7 @@
 /*
 Plugin Name: Improved Gallery
 Version: 1.0.2
-Description: Improves the built-in gallery in WP 2.5
+Description: Improves the built-in gallery in WP 2.5+
 Author: scribu
 Author URI: http://scribu.net/
 Plugin URI: http://scribu.net/downloads/improved-gallery.html
@@ -98,12 +98,12 @@ function improved_gallery($output, $attr){
 }
 
 function improved_gallery_stylesheet(){
-	if ( !defined('WP_CONTENT_URL') )
-		// Pre-2.6 compatibility
-		$plugin_url = get_option('siteurl') . '/wp-content';
+	// Set plugin url
+	if ( function_exists('plugin_url') )
+		$this->plugin_url = plugin_url();
 	else
-		$plugin_url = WP_CONTENT_URL;
-	$plugin_url .= '/plugins/' . plugin_basename(dirname(__FILE__));
+		// Pre-2.6 compatibility
+		$this->plugin_url = get_option('siteurl') . '/wp-content/plugins/' . plugin_basename(dirname(__FILE__));
 
 	echo '<link rel="stylesheet" type="text/css" media="screen" href="' . $plugin_url . '/gallery-style.css" />'."\n";
 }
