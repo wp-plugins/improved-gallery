@@ -17,8 +17,7 @@ This plugin improves the gallery template in Wordpress 2.5+, by making the follo
 
 == Installation ==
 
-1. Unzip "Custom Field Images" archive and put the folder into your "plugins" folder (`/wp-content/plugins/`).
-1. Go to `/wp-includes/` directory, find the file `media.php` and set its permissions to 757 (This should not be necesary in WP 2.5.2)
+1. Unzip "Improved Gallery" archive and put the folder into your "plugins" folder (`/wp-content/plugins/`).
 1. Activate the plugin from the Plugins admin menu.
 
 = Advanced Usage =

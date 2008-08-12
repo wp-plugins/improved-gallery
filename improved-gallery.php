@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Improved Gallery
-Version: 1.0.2
-Description: Improves the built-in gallery in WP 2.5+
+Version: 1.0.3
+Description: Improves the built-in gallery in WP 2.5
 Author: scribu
 Author URI: http://scribu.net/
-Plugin URI: http://scribu.net/projects/improved-gallery.html
+Plugin URI: http://scribu.net/downloads/improved-gallery.html
 */
 
 /*
@@ -28,83 +28,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 add_filter('post_gallery', 'improved_gallery', 10, 2);
 add_action('wp_head', 'improved_gallery_stylesheet');
 
-function improved_gallery($output, $attr){
-	global $post;
-	// We're trusting author input, so let's at least make sure it looks like a valid orderby statement
-	if ( isset( $attr['orderby'] ) ) {
-		$attr['orderby'] = sanitize_sql_orderby( $attr['orderby'] );
-		if ( !$attr['orderby'] )
-			unset( $attr['orderby'] );
+// Check version
+global $wp_version;
+
+if ( substr($wp_version, 0, 3) == '2.6' )
+	require(dirname(__FILE__) . '/2.6.php');
+elseif ( substr($wp_version, 0, 3) == '2.5' )
+	require(dirname(__FILE__) . '/2.5.php');
+else {
+	function improved_gallery_warning() {
+		echo '<div class="error"><p><strong>Improved Gallery can\'t work with this WordPress version!</strong> See the readme for supported versions.</p></div>';
 	}
 
-	extract(shortcode_atts(array(
-		'orderby'    => 'menu_order ASC, ID ASC',
-		'id'         => $post->ID,
-		'itemtag'    => 'dl',
-		'icontag'    => 'dt',
-		'captiontag' => 'dd',
-		'columns'    => 3,
-		'size'       => 'thumbnail',
-	), $attr));
-
-	$id = intval($id);
-	$attachments = get_children("post_parent=$id&post_type=attachment&post_mime_type=image&orderby={$orderby}");
-
-	if ( empty($attachments) )
-		return '';
-
-	if ( is_feed() ) {
-		$output = "\n";
-		foreach ( $attachments as $id => $attachment )
-			$output .= wp_get_attachment_link($id, $size, true) . "\n";
-		return $output;
-	}
-
-	$listtag = tag_escape($listtag);
-	$itemtag = tag_escape($itemtag);
-	$captiontag = tag_escape($captiontag);
-	$columns = intval($columns);
-	$itemwidth = $columns > 0 ? floor(100/$columns) : 100;
-
-	$output = "\t<!-- Begin Improved Gallery -->
-	<style type='text/css'>#post{$id} .gallery-item {width: {$itemwidth}%;}</style>
-	<div class='gallery' id='post{$id}'>\n";
-
-	foreach ( $attachments as $id => $attachment ) {
-		$link = wp_get_attachment_link($id, $size, true);
-		$output .= "
-		<{$itemtag} class='gallery-item'>";
-		$output .= "
-			<{$icontag} class='gallery-icon'>
-				$link
-			</{$icontag}>";
-		if ( $captiontag && trim($attachment->post_excerpt) ) {
-			$output .= "
-				<{$captiontag} class='gallery-caption'>
-				{$attachment->post_excerpt}
-				</{$captiontag}>";
-		}
-		$output .= "</{$itemtag}>";
-		if ( $columns > 0 && ++$i % $columns == 0 )
-			$output .= '<br style="clear: both" />';
-	}
-
-	$output .= "
-			<br style='clear: both;' />
-	</div>
-	<!-- End Improved Gallery -->\n";
-
-	return $output;
+	add_action('admin_notices', 'improved_gallery_warning');
 }
 
-function improved_gallery_stylesheet(){
-	// Set plugin url
+function improved_gallery_stylesheet() {
 	if ( function_exists('plugin_url') )
-		$this->plugin_url = plugin_url();
+		$plugin_url = plugin_url();
 	else
 		// Pre-2.6 compatibility
-		$this->plugin_url = get_option('siteurl') . '/wp-content/plugins/' . plugin_basename(dirname(__FILE__));
+		$plugin_url = get_option('siteurl') . '/wp-content/plugins/' . plugin_basename(dirname(__FILE__));
 
-	echo '<link rel="stylesheet" type="text/css" media="screen" href="' . $plugin_url . '/gallery-style.css" />'."\n";
+	echo '<link rel="stylesheet" href="' . $plugin_url . '/gallery-style.css" type="text/css" media="screen" />' . "\n";
 }
+
 ?>
