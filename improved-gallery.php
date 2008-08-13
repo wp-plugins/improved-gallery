@@ -5,7 +5,7 @@ Version: 1.0.3
 Description: Improves the built-in gallery in WP 2.5
 Author: scribu
 Author URI: http://scribu.net/
-Plugin URI: http://scribu.net/downloads/improved-gallery.html
+Plugin URI: http://scribu.net/projects/improved-gallery.html
 */
 
 /*
