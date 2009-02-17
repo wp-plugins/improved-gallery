@@ -2,14 +2,12 @@
 /*
 Plugin Name: Improved Gallery
 Version: 1.0.3
-Description: Improves the built-in gallery in WP 2.5
+Description: Improves the built-in gallery in WP >= 2.5
 Author: scribu
 Author URI: http://scribu.net/
-Plugin URI: http://scribu.net/projects/improved-gallery.html
-*/
+Plugin URI: http://scribu.net/wordpress/improved-gallery
 
-/*
-Copyright (C) 2008 scribu.net (scribu AT gmail DOT com)
+Copyright (C) 2009 scribu.net (scribu AT gmail DOT com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -53,4 +51,3 @@ function improved_gallery_stylesheet() {
 	echo '<link rel="stylesheet" href="' . $plugin_url . '/gallery-style.css" type="text/css" media="screen" />' . "\n";
 }
 
-?>
