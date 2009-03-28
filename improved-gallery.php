@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Improved Gallery
-Version: 1.0.3
+Version: 1.0.5
 Description: Improves the built-in gallery in WP >= 2.5
 Author: scribu
 Author URI: http://scribu.net/
@@ -23,31 +23,30 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-add_filter('post_gallery', 'improved_gallery', 10, 2);
-add_action('wp_head', 'improved_gallery_stylesheet');
+add_filter('gallery_style', 'improved_gallery', 10, 2);
+add_action('template_redirect', 'improved_gallery_stylesheet');
 
-// Check version
-global $wp_version;
+function improved_gallery($style) {
+	global $post;
+	
+	// Extract width;
+	preg_match('/width:\s*(\d+)%;/', $style, $matches);
 
-if ( substr($wp_version, 0, 3) == '2.6' )
-	require(dirname(__FILE__) . '/2.6.php');
-elseif ( substr($wp_version, 0, 3) == '2.5' )
-	require(dirname(__FILE__) . '/2.5.php');
-else {
-	function improved_gallery_warning() {
-		echo '<div class="error"><p><strong>Improved Gallery can\'t work with this WordPress version!</strong> See the readme for supported versions.</p></div>';
-	}
+	$id = "post{$post->ID}";
+	$width = $matches[1];
 
-	add_action('admin_notices', 'improved_gallery_warning');
+	$style = "<style type='text/css'>#{$id} .gallery-item {width: {$width}%}</style>
+	<div class='gallery' id='{$id}'>\n";
+
+	return $style;
 }
 
 function improved_gallery_stylesheet() {
-	if ( function_exists('plugin_url') )
-		$plugin_url = plugin_url();
+	if ( function_exists('plugins_url') )
+		$url = plugins_url(plugin_basename(dirname(__FILE__)));
 	else
-		// Pre-2.6 compatibility
-		$plugin_url = get_option('siteurl') . '/wp-content/plugins/' . plugin_basename(dirname(__FILE__));
+		$url = get_option('siteurl') . '/wp-content/plugins/' . plugin_basename(dirname(__FILE__));
 
-	echo '<link rel="stylesheet" href="' . $plugin_url . '/gallery-style.css" type="text/css" media="screen" />' . "\n";
+	wp_enqueue_style('gallery-style', $url . '/gallery-style.css');
 }
 

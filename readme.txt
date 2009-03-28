@@ -3,14 +3,14 @@ Contributors: scribu
 Donate link: http://scribu.net/wordpress
 Tags: gallery, images, optimisation
 Requires at least: 2.5
-Tested up to: 2.6
+Tested up to: 2.8
 Stable tag: trunk
 
-Improves the built-in gallery in WP 2.5 & WP 2.6
+Improves the built-in gallery in WordPress 2.5 and newer.
 
 == Description ==
 
-This plugin improves the gallery template in WordPress 2.5 and WP 2.6 by making the following tweaks:
+This plugin improves the gallery template by making the following tweaks:
 
 1. Puts all the gallery css in a separte file, for easy customisation and **faster page load**.
 1. Adds an id attribute to the code, so that two or more galleries can have a *different* number of columns and still **display correctly** on the same page.
