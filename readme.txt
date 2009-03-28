@@ -27,4 +27,4 @@ If you want to make it even easier to edit your gallery style, you can do this:
 1. Copy the styles from 'gallery-style.css' into the main 'style.css' file in your theme (`wp-content/themes/your-theme`).
 1. Edit `improved-gallery.php` and delete or comment out this line, like so:
 
-`// add_action('wp_head', 'improved_gallery_stylesheet');`
+`// add_action('template_redirect', 'improved_gallery_stylesheet');`
