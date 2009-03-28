@@ -23,7 +23,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-add_filter('gallery_style', 'improved_gallery', 10, 2);
+add_filter('gallery_style', 'improved_gallery');
 add_action('template_redirect', 'improved_gallery_stylesheet');
 
 function improved_gallery($style) {
