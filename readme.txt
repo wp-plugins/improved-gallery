@@ -28,3 +28,11 @@ If you want to make it even easier to edit your gallery style, you can do this:
 1. Edit `improved-gallery.php` and delete or comment out this line, like so:
 
 `// add_action('template_redirect', 'improved_gallery_stylesheet');`
+
+== Changelog ==
+
+= 1.0.5 =
+* WP 2.8 compatibility
+
+= 1.0 =
+* initial release
