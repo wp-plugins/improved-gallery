@@ -36,3 +36,5 @@ If you want to make it even easier to edit your gallery style, you can do this:
 
 = 1.0 =
 * initial release
+* [more info](http://scribu.net/wordpress/improved-gallery/ig-1-0.html)
+
