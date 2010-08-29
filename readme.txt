@@ -15,6 +15,8 @@ This plugin improves the gallery template by making the following tweaks:
 1. Puts all the gallery css in a separte file, for easy customisation and **faster page load**.
 1. Adds an id attribute to the code, so that two or more galleries can have a *different* number of columns and still **display correctly** on the same page.
 
+Links: [Plugin News](http://scribu.net/wordpress/improved-gallery) | [Author's Site](http://scribu.net)
+
 == Installation ==
 
 1. Unzip "Improved Gallery" archive and put the folder into your "plugins" folder (`/wp-content/plugins/`).
